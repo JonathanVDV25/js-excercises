@@ -1,0 +1,8 @@
+# ignore all node_modules folders and nested folders & files
+node_modules
+# ignore the users.json data file
+users.json
+# ignore the specific VS Code configuration parameters
+.vscode
+# ignore only the courseinput folder in the current directory, not subdir /course-website
+/course-input
