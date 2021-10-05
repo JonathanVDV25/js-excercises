@@ -1,0 +1,11 @@
+main {
+    border: 1px solid red;
+}
+li {
+    display: inline;
+    padding-right: 5%;
+}
+img {
+    height: auto;
+    max-width: 15%;
+}
