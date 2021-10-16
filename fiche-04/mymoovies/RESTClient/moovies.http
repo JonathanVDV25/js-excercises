@@ -1,0 +1,62 @@
+######### NORMAL OPERATION  ###########
+
+### Read all pizzas
+GET http://localhost:3000/moovies
+
+### Read pizza identified by 2
+GET http://localhost:3000/moovies/2
+
+### Create a pizza
+POST http://localhost:3000/moovies
+Content-Type: application/json
+
+{
+    "title":"Conjuring 2",
+    "duration":150,
+    "budget":15,
+}
+
+### Update the pizza identified by 2
+PUT http://localhost:3000/moovies/2
+Content-Type: application/json
+
+{
+    "title":"Le loup de Wallstreet"
+}
+
+### Delete pizza identified by 2
+DELETE http://localhost:3000/moovies/2
+
+
+######### ERROR OPERATION  ###########
+
+### Read pizza which does not exists
+GET http://localhost:3000/moovies/100
+
+### Create a pizza without info for a property
+POST http://localhost:3000/moovies
+Content-Type: application/json
+
+{
+    "title":"",
+    "duration":130,
+    "budget":16,
+}
+
+### Update for a pizza which does not exist
+PUT http://localhost:3000/moovies/200
+Content-Type: application/json
+
+{
+    "title":"Vamos a la playa"
+}
+
+### Update for a pizza which does not provide any info for a property
+PUT http://localhost:3000/moovies/1
+Content-Type: application/json
+
+{
+    "title":"Magic Green 2",
+    "duration":123,
+    "budget":15,
+}

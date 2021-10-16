@@ -1,0 +1,12 @@
+### Read all cars
+
+GET http://localhost:3000/cars
+
+### Create a carr
+POST http://localhost:3000/cars 
+Content-Type: application/json
+
+{
+    "brand" : "Dacia",
+    "model" : "Sandero"
+}
