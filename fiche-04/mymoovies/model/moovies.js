@@ -5,9 +5,9 @@ const jsonDbPath = __dirname + "/../data/moovies.json";
 
 // Default pizza menu
 const defaultMoovies = [
-    { id: 1, title: "Moi moche et méchant", duration: 120, budget: 10},
-    { id: 2, title: "Conjuring 3", duration: 125, budget: 15},
-    { id: 3, title: "Scarface", duration: 120, budget: 18},
+    { id: 1, title: "Moi moche et méchant", duration: 120, budget: 10, link: "https://www.youtube.com/watch?v=OPf1YYSKxBs"},
+    { id: 2, title: "Conjuring 3", duration: 125, budget: 15, link: "https://www.youtube.com/watch?v=KnkTLf_Zrbo"},
+    { id: 3, title: "Scarface", duration: 120, budget: 18, link: "https://www.youtube.com/watch?v=KnkTLf_Zrbo"},
 ];
 
 class Moovies {
@@ -62,6 +62,7 @@ class Moovies {
       title: body.title,
       duration: body.duration,
       budget: body.budget,
+      link: body.link,
     };
     moovies.push(newMoovie);
     serialize(this.jsonDbPath, moovies);
@@ -77,7 +78,7 @@ class Moovies {
     const moovies = parse(this.jsonDbPath, this.defaultMoovies);
     const foundIndex = moovies.findIndex((moovie) => moovie.id == id);
     if (foundIndex < 0) return;
-    const itemRemoved = moovie.splice(foundIndex, 1);
+    const itemRemoved = moovies.splice(foundIndex, 1);
     serialize(this.jsonDbPath, moovies);
 
     return itemRemoved[0];

@@ -11,9 +11,10 @@ POST http://localhost:3000/moovies
 Content-Type: application/json
 
 {
-    "title":"Conjuring 2",
+    "title":"Suz",
     "duration":150,
-    "budget":15
+    "budget":15,
+    "link":"https://www.youtube.com/watch?v=WW1_xh3ZEVY"
 }
 
 ### Update the pizza identified by 2
@@ -41,6 +42,7 @@ Content-Type: application/json
     "title":"",
     "duration":130,
     "budget":16,
+    "link":"youtube.com",
 }
 
 ### Update for a pizza which does not exist

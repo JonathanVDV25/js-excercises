@@ -30,7 +30,8 @@ router.post("/", function (req, res) {
     !req.body ||
     (req.body.hasOwnProperty("title") && req.body.title.length === 0) ||
     (req.body.hasOwnProperty("duration") && req.body.duration.length === 0) ||
-    (req.body.hasOwnProperty("budget") && req.body.budget.length === 0) 
+    (req.body.hasOwnProperty("budget") && req.body.budget.length === 0) ||
+    (req.body.hasOwnProperty("link") && req.body.link.length === 0)
   )
     return res.status(400).end();
 
@@ -40,7 +41,7 @@ router.post("/", function (req, res) {
 
 // DELETE /pizzas/{i} : delete a pizza from the menu
 router.delete("/:id", function (req, res) {
-  console.log(`DELETE /moovie/${req.params.id}`);
+  console.log(`DELETE /moovies/${req.params.id}`);
 
   const moovie = moovieModel.deleteOne(req.params.id);
   // Send an error code '404 Not Found' if the pizza was not found
@@ -55,7 +56,9 @@ router.put("/:id", function (req, res) {
   if (
     !req.body ||
     (req.body.hasOwnProperty("title") && req.body.title.length === 0) ||
-    (req.body.hasOwnProperty("content") && req.body.content.length === 0)
+    (req.body.hasOwnProperty("duration") && req.body.duration.length === 0) ||
+    (req.body.hasOwnProperty("budget") && req.body.budget.length === 0) ||
+    (req.body.hasOwnProperty("link") && req.body.link.length === 0)
   )
     return res.status(400).end();
 
