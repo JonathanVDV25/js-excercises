@@ -13,7 +13,7 @@ Content-Type: application/json
 {
     "title":"Conjuring 2",
     "duration":150,
-    "budget":15,
+    "budget":15
 }
 
 ### Update the pizza identified by 2
