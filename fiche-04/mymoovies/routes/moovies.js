@@ -4,10 +4,29 @@ const { Moovies } = require("../model/moovies");
 var router = express.Router();
 const moovieModel = new Moovies();
 
-// GET /pizzas : read all the pizzas from the menu
+// // GET /pizzas : read all the pizzas from the menu
+// router.get("/", function (req, res) {
+//   console.log("GET /moovies");
+//   return res.json(moovieModel.getAll());
+// });
+
+// GET /films : read all the films, filtered by minimum-duration if the query param exists
 router.get("/", function (req, res) {
-  console.log("GET /moovies");
-  return res.json(moovieModel.getAll());
+  // NB : in JS, variables cannot contain '-'
+  console.log("req.params", req.query);
+  const minimumMoovieDuration = req.query
+    ? parseInt(req.query["minimum-duration"])
+    : undefined;
+  if (
+    minimumMoovieDuration &&
+    (isNaN(minimumMoovieDuration) || minimumMoovieDuration <= 0)
+  )
+    return res.sendStatus(400);
+  const moovies = moovieModel.getAll();
+  if (!minimumMoovieDuration) return res.json(moovieModel.getAll());
+  else {
+    res.json(moovieModel.getAll((moovie) => moovie.duration >= minimumMoovieDuration));
+  }
 });
 
 // GET /pizzas/{id} : Get a pizza from its id in the menu

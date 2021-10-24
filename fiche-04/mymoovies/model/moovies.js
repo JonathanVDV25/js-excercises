@@ -34,6 +34,21 @@ class Moovies {
     return moovies;
   }
 
+   /**
+   * Returns all resources
+   * @param {predicate} function to be used to filter all resources
+   * @returns {Array} Array of resources
+   */
+
+  getAll(filterPredicate){
+    let collection;
+    collection = parse(this.jsonDbPath, this.defaultMoovies);
+    if(filterPredicate) return collection.filter(filterPredicate);
+    else return collection;
+
+  }
+
+
   /**
    * Returns the pizza identified by id
    * @param {number} id - id of the pizza to find

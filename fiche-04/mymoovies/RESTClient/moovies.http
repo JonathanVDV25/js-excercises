@@ -3,6 +3,9 @@
 ### Read all pizzas
 GET http://localhost:3000/moovies
 
+### Read all pizzas filtered
+GET http://localhost:3000/moovies?minimum-duration=150
+
 ### Read pizza identified by 2
 GET http://localhost:3000/moovies/2
 
@@ -11,8 +14,8 @@ POST http://localhost:3000/moovies
 Content-Type: application/json
 
 {
-    "title":"Suz",
-    "duration":150,
+    "title":"Suz2",
+    "duration":110,
     "budget":15,
     "link":"https://www.youtube.com/watch?v=WW1_xh3ZEVY"
 }
