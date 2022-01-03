@@ -26,6 +26,9 @@ function parse(filePath, defaultArray = []) {
  * Even if the file exists, its whole content is reset by the given object.
  */
 function serialize(filePath, object) {
+  if(!fs.existsSync("data/")) {
+    fs.mkdirSync("data/");
+  }
   const objectSerialized = JSON.stringify(object);
   fs.writeFileSync(filePath, objectSerialized);
 }
