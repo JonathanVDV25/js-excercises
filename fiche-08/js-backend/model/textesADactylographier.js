@@ -69,7 +69,11 @@ class TextesADactylographier{
         console.log(amountTextsByLevel);
         console.log(randomNumber);
 
-        return texts.filter(t => t.level === level &&  t.id % amountTextsByLevel  === randomNumber).slice(0, 1);
+        let texts = texts.filter(t => t.level === level && t.id % amountTextsByLevel === randomNumber);
+        let counter = 0;
+        let amount = texts.forEach(t => counter++);
+        counter = Math.floor(Math.random() * counter);
+        return texts.filter(t => t.level === level &&  t.id % amountTextsByLevel  === randomNumber).slice(counter-1, counter);
     }
 
     /**
@@ -88,6 +92,7 @@ class TextesADactylographier{
 
         texts.push(newText);
         serialize(this.jsonDbPath, texts);
+        console.log(newText);
 
         return newText;
     }

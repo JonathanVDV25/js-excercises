@@ -14,7 +14,7 @@ import tab_texts from "./default_texts";
         pageDiv.innerHTML = `<h2> Texte à dactylographier </h2>
                         <form>
                         <select name="niveau">
-                            <option value="">Veillez choissir un niveau</option>
+                            <option value="no">Veillez choissir un niveau</option>
                             <option value="facile" class="s">Facile</option>
                             <option value="moyen" class="s">Moyen</option>
                             <option value="difficile" class="s">Difficile</option>
@@ -28,19 +28,26 @@ import tab_texts from "./default_texts";
                                          
     }
 
-    function afficherTexte(){
-        //var choix = niveau.options[niveau.selectedIndex].value;
+    async function afficherTexte(){ //Mettre async
         let choix = btnSelectNiveau.options[btnSelectNiveau.selectedIndex].value;
-        let compteur = 0;
-        let nbrTextNiveau = tab_texts.filter(t => t.level === choix).forEach(t => compteur++);
-        console.log(compteur);
-        let number = Math.floor(Math.random() * compteur); // 0,1, .. compteur
-        let texteAAfficher = tab_texts.filter(t => t.level === choix && t.id % compteur === number).map(t => "\n" + t.content).toString();
-        //ça ne marche que si y a que 2 textes dispo !!
-        
+        if(choix === "no") return;
+
+        const response = await fetch("/api/texts/" + choix); // fetch return a promise => we wait for the response
+
+        if (!response.ok) {
+            // status code was not 200, error status code
+            throw new Error(
+              "fetch error : " + response.status + " : " + response.statusText
+            );
+        }
+        const texts = await response.json(); // json() returns a promise => we wait for the data
+
         let texte = document.getElementById("texteDactylographier");
         let texteArea = document.getElementById("textArea").innerHTML = `<textarea name="texte" rows="20" cols="60"></textarea>`;
-        texte.innerText = texteAAfficher;
+        console.log(texts);
+        console.log(texts[0].content);
+        texte.innerText = texts[0].content;
+        //texts.foreach(t => texte.innerText = "zalut");
     }
 
     dac.addEventListener("click", afficherFormulaireDactylographier);
