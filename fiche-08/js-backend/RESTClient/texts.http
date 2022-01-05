@@ -1,0 +1,11 @@
+### Read pizza identified by 2
+GET http://localhost:3000/texts/facile
+
+### Create a text
+POST http://localhost:3000/texts
+Content-Type: application/json
+
+{
+    "content":"SALIUT LES REUFS6",
+    "level":"facile"
+}
