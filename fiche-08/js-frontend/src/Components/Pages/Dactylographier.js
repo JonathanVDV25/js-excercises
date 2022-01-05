@@ -4,7 +4,7 @@ import tab_texts from "./default_texts";
  */
 
  const Dactylographier = () => { 
-    console.log(tab_texts.filter(t => t.id === 1).map(t => t.content).toString());
+    //console.log(tab_texts.filter(t => t.id === 1).map(t => t.content).toString());
     const pageDiv = document.querySelector("#page");
 
     const dac = document.getElementById("dactylo");
