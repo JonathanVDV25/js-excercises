@@ -44,9 +44,12 @@ import tab_texts from "./default_texts";
 
         let texte = document.getElementById("texteDactylographier");
         let texteArea = document.getElementById("textArea").innerHTML = `<textarea name="texte" rows="20" cols="60"></textarea>`;
+        let a = texts.length;
+        console.log("a=",a);
+        let randomm = Math.floor(Math.random() * a);
         console.log(texts);
-        console.log(texts[0].content);
-        texte.innerText = texts[0].content;
+        console.log(texts[randomm].content);
+        texte.innerText = texts[randomm].content;
         //texts.foreach(t => texte.innerText = "zalut");
     }
 
