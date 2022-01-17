@@ -43,8 +43,7 @@ import tab_texts from "./default_texts";
         const text = await response.json(); // json() returns a promise => we wait for the data
 
         let texte = document.getElementById("texteDactylographier");
-        let texteArea = document.getElementById("textArea").innerHTML = `<textarea name="texte" rows="20" cols="60"></textarea>`;
-        console.log(text);
+        document.getElementById("textArea").innerHTML = `<textarea name="texte" rows="20" cols="60"></textarea>`;
         console.log(text);
         console.log(text.content);
         texte.innerText = text.content;
