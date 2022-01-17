@@ -33,24 +33,21 @@ import tab_texts from "./default_texts";
         if(choix === "no") return;
 
         const response = await fetch("/api/texts/" + choix); // fetch return a promise => we wait for the response
-
+        console.log(response);
         if (!response.ok) {
             // status code was not 200, error status code
             throw new Error(
               "fetch error : " + response.status + " : " + response.statusText
             );
         }
-        const texts = await response.json(); // json() returns a promise => we wait for the data
+        const text = await response.json(); // json() returns a promise => we wait for the data
 
         let texte = document.getElementById("texteDactylographier");
         let texteArea = document.getElementById("textArea").innerHTML = `<textarea name="texte" rows="20" cols="60"></textarea>`;
-        let a = texts.length;
-        console.log("a=",a);
-        let randomm = Math.floor(Math.random() * a);
-        console.log(texts);
-        console.log(texts[randomm].content);
-        texte.innerText = texts[randomm].content;
-        //texts.foreach(t => texte.innerText = "zalut");
+        console.log(text);
+        console.log(text);
+        console.log(text.content);
+        texte.innerText = text.content;
     }
 
     dac.addEventListener("click", afficherFormulaireDactylographier);

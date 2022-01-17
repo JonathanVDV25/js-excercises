@@ -61,20 +61,19 @@ class TextesADactylographier{
    */
     getOne(level){
         const texts = parse(this.jsonDbPath, this.defaultTexts);
-        let amountTextsByLevel = 0;
-        texts.filter(t => t.level === level).forEach(t => amountTextsByLevel++);
-        let random;
-        while(true){
-            random = Math.random();
-            if(random != 0) break;
-        }
-        let randomNumber = Math.floor(random * amountTextsByLevel);
-        console.log(amountTextsByLevel);
-        console.log(randomNumber);
 
-        let s = texts.filter(t => t.level === level &&  t.id % amountTextsByLevel  === 0);
-        console.log(s);
-        return s;
+        let textsPossible = texts.filter(t => t.level === level);
+        let amount = 0;
+        texts.filter(t => t.level === level).forEach(t => amount++);
+        //console.log("amount: ", amount);
+        //console.log("Les textes dispo: ", textsPossible);
+        //console.log("lll", textsPossible[0]);
+
+        let chiffre = Math.floor(Math.random()*(amount-1));
+        let textToSend = textsPossible[chiffre]; //Car le tableau commence à 0
+        console.log(chiffre);
+        console.log(textToSend);
+        return textToSend;
     }
 
     /**
