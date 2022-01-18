@@ -71,9 +71,9 @@ class TextesADactylographier{
 
         //// generating a random number
         //const a = Math.floor(Math.random() * (max - min + 1)) + min;
-        
-        let chiffre = Math.floor(Math.random() * (amount - 0 + 1)) + 0;
-        console.log("random: ", chiffre);
+
+        let chiffre = Math.floor(Math.random() * ((amount-1) - 0 + 1)) + 0; //amount-1 car si y a 3 éléments, les indices peuvent seulement
+        console.log("random: ", chiffre);                                   //etre 0, 1, 2
 
         let textToSend = textsPossible[chiffre];
         console.log(chiffre);
