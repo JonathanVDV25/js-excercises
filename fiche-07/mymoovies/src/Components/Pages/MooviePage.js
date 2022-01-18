@@ -1,83 +1,47 @@
 import Film from "../../Domain/Film";
 import FilmLibrary from "../../Domain/FilmLibrary";
+import { getSessionObject } from "../../utils/session";
 
 const mooviePage = `
 <div class="text-center">
   <h3>Moovies</h3>
 
   <p>Here you can find all moovies</p>
-
-  <form class="px-5">
-            <div class="mb-3">
-              <label for="title">Enter title</label>
-              <input
-                class="form-control"
-                type="text"
-                name="title"
-                id="title"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="duration">Enter duration (minutes)</label>
-              <input
-                class="form-control"
-                type="number"
-                name="duration"
-                id="duration"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="budget">Enter budget (million)</label>
-              <input
-                class="form-control"
-                type="number"
-                name="budget"
-                id="budget"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="link">Enter link</label>
-              <input
-                class="form-control"
-                type="url"
-                name="link"
-                id="link"
-                required
-              />
-            </div>
-            <input type="submit" class="btn btn-primary" value="Add Moovie" />
-    </form>
-    <div id="printMoovies"></div>
-  
+  <div id="printMoovies"></div>
 </div>`;
 
 const myFilmLibrary = new FilmLibrary();
 
-const MooviePage = async () => {
+const mooviePage = async () => {
+  const user = getSessionObject("user");
   const main = document.querySelector("main");
   main.innerHTML = mooviePage;
-  const myForm = document.querySelector("form");
   const printMoovies = document.querySelector("#printMoovies");
-  printMoovies.innerHTML = await myFilmLibrary.getHtmlTable();
+  printMoovies.innerHTML = await myFilmLibrary.getHtmlTable(user);
+  //Add event listeners to deal with delete & save operations
+  printMoovies.querySelector(".delete").forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const elementId = e.target.dataset.elementId;
+      myFilmLibrary.deleteFilm(user, elementId);
+      MooviePage();
+    });
+  });
 
-  myForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    let newFilm = new Film(
-      title.value,
-      parseInt(duration.value),
-      parseInt(budget.value),
-      link.value
-    );
-
-    const filmAdded = await myFilmLibrary.addFilm(newFilm);
-    // test to see if our collection is protected against change in objects
-    newFilm.title = "External change to object after added to collection";
-    printMoovies.innerHTML = await myFilmLibrary.getHtmlTable();
-    // clear form inputs
-    myForm.reset();
+  printMoovies.querySelectorAll(".update").forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const elementId = e.target.dataset.elementId;
+      //Get the data to be updated : the button is within a td which is within a tr
+      const filmRow = e.target.parentElement.parentElement;
+      const newFilmData = {
+        title: filmRow.children[0].innerHTML,
+        link: filmRow.children[1].innerText, // it's is a link that we change, not directly the td
+        duration: filmRow.children[2].innerHTML,
+        budget: filmRow.children[3].innerHTML,
+      };
+      console.log("newFilmData:", newFilmData);
+      myFilmLibrary.updateFilm(user, elementId, newFilmData);
+      MooviePage();
+    });
   });
 };
 

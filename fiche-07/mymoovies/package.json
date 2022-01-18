@@ -1,7 +1,7 @@
 {
-  "name": "myjscourse-mymoovies-fiche06",
+  "name": "myjscourse-mymoovies-fiche07",
   "version": "1.0.0",
-  "description": "myJScourse's : Mymoovies SPA : frontend integrated with RESTFul API",
+  "description": "myJScourse's : Mymoovies SPA : frontend integrated with RESTFul API & JWT",
   "scripts": {
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
