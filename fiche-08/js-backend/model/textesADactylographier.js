@@ -69,7 +69,9 @@ class TextesADactylographier{
         console.log("Les textes dispo: ", textsPossible);
         //console.log("lll", textsPossible[0]);
 
-        //let chiffre = Math.floor(Math.random()*(amount));
+        //// generating a random number
+        //const a = Math.floor(Math.random() * (max - min + 1)) + min;
+        
         let chiffre = Math.floor(Math.random() * (amount - 0 + 1)) + 0;
         console.log("random: ", chiffre);
 
