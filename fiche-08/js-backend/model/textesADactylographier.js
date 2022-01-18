@@ -66,11 +66,14 @@ class TextesADactylographier{
         let amount = 0;
         texts.filter(t => t.level === level).forEach(t => amount++);
         //console.log("amount: ", amount);
-        //console.log("Les textes dispo: ", textsPossible);
+        console.log("Les textes dispo: ", textsPossible);
         //console.log("lll", textsPossible[0]);
 
-        let chiffre = Math.floor(Math.random()*(amount-1));
-        let textToSend = textsPossible[chiffre]; //Car le tableau commence à 0
+        //let chiffre = Math.floor(Math.random()*(amount));
+        let chiffre = Math.floor(Math.random() * (amount - 0 + 1)) + 0;
+        console.log("random: ", chiffre);
+
+        let textToSend = textsPossible[chiffre];
         console.log(chiffre);
         console.log(textToSend);
         return textToSend;
